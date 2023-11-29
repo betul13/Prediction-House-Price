@@ -139,16 +139,6 @@ na_columns = missing_values_table(df)
 miss_cat = [col for col in na_columns if col in cat_cols]
 miss_num = [col for col in na_columns if col in num_cols]
 
-threshold = 4  # Eksik değer sayısı eşiği
-
-# Her bir sütundaki eksik değer sayısını kontrol et
-for col in miss_cat:
-    if df[col].isnull().sum() <= threshold:
-        # Belirli sütundaki eksik değeri 4'ten az olan satırları kaldır
-        df = df[df[col].notnull()]
-na_columns = missing_values_table(df)
-miss_cat = [col for col in na_columns if col in cat_cols]
-miss_num = [col for col in na_columns if col in num_cols]
 
 for col in miss_cat:
     df[col].fillna("No", inplace=True)
